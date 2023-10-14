@@ -27,6 +27,12 @@ jobs:
       - name: Check version of packer
         run: packer -v
       
+      - name: Add required plugins
+        run: packer init .
+
+      - name: format packer content
+        run: packer fmt .
+      
       - name: validate packer
         run: packer validate .
       
