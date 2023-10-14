@@ -10,6 +10,8 @@ jobs:
   packer_build:
     runs-on: ubuntu-latest
     steps:
+      - name: print console log
+        run: echo 'started packer build yml'
       - uses: actions/checkout@v1
       - name: Packer build
         if: github.repositry == 'packer-validation'
