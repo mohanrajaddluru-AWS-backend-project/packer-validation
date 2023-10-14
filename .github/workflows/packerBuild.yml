@@ -10,16 +10,26 @@ jobs:
     steps:
       - name: print console log
         run: echo 'started packer build yml'
-      - uses: actions/checkout@v1
-      - name: Packer build
-        if: github.repositry == 'packer-validation'
-        uses: hashicorp/setup-packer@1.9.4
-        with:
-          templateFile: 'aws-ubuntu.pkr.hcl'
-          workingDir: ${{ github.workspace }}
+      - uses: actions/checkout@v4
+      
+      - name: check the local content
+        run: ls -la
+      
+      - name: Downloading Packer
+        run: sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      
+      - name: Installing Packer
+        run: sudo apt-get update && sudo apt-get install packer
+      
+      - name: Check version of packer
+        run: packer -v
+      
+      - name: validate packer
+        run: packer validate .
+      
+      - name: packer build
+        run: packer build aws-ubuntu.pkr.hcl
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_DEFAULT_REGION: us-east-1
-      - name: Run Packer build
-        run: packer build aws-ubuntu.pkr.hcl
