@@ -5,24 +5,27 @@ on:
     branches:
       - main
 
+env:
+  PRODUCT_VERSION: "1.9.4"
+
 jobs:
-  format-and-validate:
+  packer:
     runs-on: ubuntu-latest
-
+    name: Run Packer
     steps:
-    - name: Check out code
-      uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Run packer fmt
-      run: |
-        if ! packer fmt -check aws-ubuntu.pkr.hcl; then
-          echo "Packer template is not properly formatted. Please run 'packer fmt' locally and commit the changes."
-          exit 1
-        fi
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: ${{ env.PRODUCT_VERSION }}
 
-    - name: Run packer validate
-      run: |
-        if ! packer validate aws-ubuntu.pkr.hcl; then
-          echo "Packer template validation failed. Please fix the issues and try again."
-          exit 1
-        fi
+      - name: Run `packer init`
+        id: init
+        run: "packer init ."
+
+      - name: Run `packer validate`
+        id: validate
+        run: "packer validate ."
