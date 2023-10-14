@@ -4,8 +4,6 @@ on:
   push:
     branches:
         - main
-    paths:
-        - 'aws-ubuntu.pkr.hcl'
 jobs:
   packer_build:
     runs-on: ubuntu-latest
