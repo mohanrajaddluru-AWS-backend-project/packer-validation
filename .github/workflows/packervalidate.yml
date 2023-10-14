@@ -2,6 +2,8 @@ name: Packer Validation
 
 on:
   pull_request:
+    on branches:
+      - main
     paths:
       - '/aws-ubuntu.pkr.hcl' # Path to the Packer HCL template in the root of the repository
 
