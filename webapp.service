@@ -1,0 +1,19 @@
+[Unit]
+Description=webapp
+After=cloud-final.service
+
+
+[Service]
+WorkingDirectory=/home/admin/webapp
+ExecStart=/usr/bin/node /home/admin/webapp/app.js
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=webapp
+User=admin
+
+
+[Install]
+WantedBy=multi-user. target
+WantedBy=cloud-init. target
