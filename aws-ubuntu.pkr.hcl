@@ -23,7 +23,7 @@ source "amazon-ebs" "debian" {
     filters = {
       name                = "debian-*-*-amd64-*"
       root-device-type    = "ebs"
-      virtualization-type = "hvm
+      virtualization-type = "hvm"
     }
     most_recent = true
     owners      = ["136693071363"]
