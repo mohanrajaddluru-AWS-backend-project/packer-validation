@@ -1,0 +1,28 @@
+name: Packer Validation
+
+on:
+  pull_request:
+    paths:
+      - '/aws-ubuntu.pkr.hcl' # Path to the Packer HCL template in the root of the repository
+
+jobs:
+  format-and-validate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Run packer fmt
+      run: |
+        if ! packer fmt -check aws-ubuntu.pkr.hcl; then
+          echo "Packer template is not properly formatted. Please run 'packer fmt' locally and commit the changes."
+          exit 1
+        fi
+
+    - name: Run packer validate
+      run: |
+        if ! packer validate aws-ubuntu.pkr.hcl; then
+          echo "Packer template validation failed. Please fix the issues and try again."
+          exit 1
+        fi
