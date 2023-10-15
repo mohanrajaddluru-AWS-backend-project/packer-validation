@@ -21,20 +21,28 @@ jobs:
     steps:
       - name: print console log
         run: echo 'started packer build yml'
-      - uses: actions/checkout@v4
-      
-      - name: check the local content
-        run: ls -la
 
-      - name: Adding GPG Key
-        run: curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
+      - name: checkout webapp code
+        uses: actions/checkout@v4
+        with: mohanrajaddluru-CSYE6225/webapp
+
+      - name: check for available files
+        run: ls -la
       
-      - name: Downloading Packer
-        run: sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
+      - name: zip the file
+        uses: montudor/action-zip@v1
+        with:
+          args: zip -qq -r webapp.zip webapp
+        
+      - name: Again check for available files
+        run: ls -la
       
-      - name: Installing Packer
-        run: sudo apt-get update && sudo apt-get install packer
-      
+      - name: Setup `packer`
+        uses: hashicorp/setup-packer@main
+        id: setup
+        with:
+          version: ${{ env.PRODUCT_VERSION }}
+
       - name: Check version of packer
         run: packer -v
       
