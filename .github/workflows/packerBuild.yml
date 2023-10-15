@@ -38,7 +38,7 @@ jobs:
       - name: remove webapp already exists
         run: sudo rm webapp*
       
-       - name: check working directory
+      - name: check working directory
         run: pwd | cd ~
 
       - name: checkout webapp code
