@@ -24,7 +24,9 @@ jobs:
 
       - name: checkout webapp code
         uses: actions/checkout@v4
-        with: mohanrajaddluru-CSYE6225/webapp
+        with: 
+          repository: mohanrajaddluru-CSYE6225/webapp
+          #token: ${{ secrets.GH_PAT }}
 
       - name: check for available files
         run: ls -la
