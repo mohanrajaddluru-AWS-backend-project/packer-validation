@@ -27,7 +27,6 @@ variable "AMIsharedOwnerID" {
   type    = string
   default = "171509565742"
 }
-
 packer {
   required_plugins {
     amazon = {
