@@ -34,8 +34,8 @@ jobs:
       - name: check working directory
         run: pwd | ls -la
       
-      - name: remove webapp already exists
-        run: sudo rm webapp*
+      #- name: remove webapp already exists
+      #  run: sudo rm webapp*
       
       - name: check working directory
         run: pwd
