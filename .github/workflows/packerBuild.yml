@@ -22,20 +22,32 @@ jobs:
       - name: print console log
         run: echo 'started packer build yml'
 
+      - name: check working directory
+        run: pwd
+
       - name: git checkout current repo code
         uses: actions/checkout@v4
+      
+       - name: check working directory
+        run: pwd
       
       - name: Initial check for available files
         run: ls -la
       
       - name: remove webapp already exists
         run: sudo rm webapp*
+      
+       - name: check working directory
+        run: pwd | cd ~
 
       - name: checkout webapp code
         uses: actions/checkout@v4
         with: 
           repository: mohanrajaddluru-CSYE6225/webapp
           token: ${{ secrets.GH_PAT }}
+        
+       - name: check working directory
+        run: pwd
 
       - name: check for available files
         run: ls -la
