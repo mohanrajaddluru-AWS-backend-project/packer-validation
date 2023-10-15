@@ -46,7 +46,7 @@ jobs:
           repository: mohanrajaddluru-CSYE6225/webapp
           token: ${{ secrets.GH_PAT }}
         
-       - name: check working directory
+      - name: check working directory
         run: pwd
 
       - name: check for available files
