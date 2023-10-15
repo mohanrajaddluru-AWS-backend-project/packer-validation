@@ -44,7 +44,7 @@ jobs:
         run: mkdir webapp
       
       - name: ls current directory
-        run: ls -la | pwd
+        run: ls -la
         
       - name: checkout webapp code
         uses: actions/checkout@v4
