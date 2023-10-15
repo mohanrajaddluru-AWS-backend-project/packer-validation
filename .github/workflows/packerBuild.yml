@@ -41,7 +41,7 @@ jobs:
         run: ls -la
       
       - name: come back to home directory
-        run: cd ..
+        run: cd | pwd
 
       - name: check for available files
         run: ls -ltrh
