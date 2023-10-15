@@ -39,7 +39,13 @@ jobs:
 
       - name: check for available files
         run: ls -la
+      
+      - name: come back to home directory
+        run: cd ..
 
+      - name: check for available files
+        run: ls -ltrh
+      
       - name: remove git files
         run: rm -rf .git
       
