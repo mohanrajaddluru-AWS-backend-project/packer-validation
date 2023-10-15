@@ -40,9 +40,12 @@ jobs:
       - name: check working directory
         run: pwd
       
-      - name: create a new directory for webapp and check the webapp
-        run: mkdir webapp | cd webapp | pwd
-
+      - name: create a new directory
+        run: mkdir webapp
+      
+      - name: ls current directory
+        run: ls -la | pwd
+        
       - name: checkout webapp code
         uses: actions/checkout@v4
         with: 
