@@ -39,9 +39,7 @@ jobs:
 
       - name: check for available files 2.0
         run: ls -la
-      
-      - name: cp files to 
-      
+        
       - name: zip the file
         uses: thedoctor0/zip-release@0.7.1
         with:
