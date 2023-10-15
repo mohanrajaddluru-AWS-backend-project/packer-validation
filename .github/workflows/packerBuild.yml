@@ -52,11 +52,11 @@ jobs:
       - name: check files in webapp
         run: ls -la
         
-      - name: checkout webapp code
-        uses: actions/checkout@v4
-        with: 
-          repository: mohanrajaddluru-CSYE6225/webapp
-          token: ${{ secrets.GH_PAT }}
+      #- name: checkout webapp code
+      #  uses: actions/checkout@v4
+      #  with: 
+      #    repository: mohanrajaddluru-CSYE6225/webapp
+      #    token: ${{ secrets.GH_PAT }}
         
       - name: check working directory
         run: pwd
