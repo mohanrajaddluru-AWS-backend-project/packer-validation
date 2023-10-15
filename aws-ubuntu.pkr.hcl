@@ -3,6 +3,12 @@ locals {
   timestamp = regex_replace(timestamp(), "[- TZ:]", "")
 }
 
+variable "ami_name" {}
+variable "ami_region" {}
+variable "login_username" {}
+variable "typeOfInstance" {}
+variable "sourceAMIOwner" {}
+variable "AMIsharedOwnerID" {}
 
 packer {
   required_plugins {
@@ -14,10 +20,10 @@ packer {
 }
 
 source "amazon-ebs" "debian" {
-  ami_name        = "testing-image-${local.timestamp}"
-  instance_type   = "t2.micro"
-  region          = "us-east-1"
-  ssh_username    = "admin"
+  ami_name        = "${var.ami_name}-${local.timestamp}"
+  instance_type   = "${var.typeOfInstance}"
+  region          = "${var.ami_region}"
+  ssh_username    = "${var.login_username}"
   ami_description = "created from packer"
   source_ami_filter {
     filters = {
@@ -26,9 +32,9 @@ source "amazon-ebs" "debian" {
       virtualization-type = "hvm"
     }
     most_recent = true
-    owners      = ["136693071363"]
+    owners      = ["${var.sourceAMIOwner}"]
   }
-  ami_users = ["171509565742"]
+  ami_users = ["${var.AMIsharedOwnerID}"]
 
 }
 

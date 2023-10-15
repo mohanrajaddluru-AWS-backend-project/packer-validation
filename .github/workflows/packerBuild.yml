@@ -4,6 +4,17 @@ on:
   push:
     branches:
         - main
+env:
+  PRODUCT_VERSION: "1.9.4"
+  ami_name: ${{ secrets.AMI_NAME }}
+  ami_region: ${{ secrets.AMI_REGION }}
+  login_username: ${{ secrets.LOGIN_USERNAME }}
+  typeOfInstance: ${{ secrets.TYPEOFINSTANCE }}
+  sourceAMIOwner: ${{ secrets.SOURCEAMIOWNER }}
+  AMIsharedOwnerID: ${{ secrets.AMISHAREDOWNERID }}
+
+
+
 jobs:
   packer_build:
     runs-on: ubuntu-latest
