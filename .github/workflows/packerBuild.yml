@@ -36,11 +36,18 @@ jobs:
       
       - name: add touch file
         run: touch touchtext.txt
+
+      - name: check for available files 2.0
+        run: ls -la
+      
+      - name: cp files to 
       
       - name: zip the file
-        uses: montudor/action-zip@v1
+        uses: thedoctor0/zip-release@0.7.1
         with:
-          args: zip -qq -r webapp.zip *
+          type: 'zip'
+          filename: 'webapp.zip'
+          exclusions: '*.git* /*node_modules/* '
         
       - name: Again check for available files
         run: ls -la
