@@ -45,6 +45,12 @@ jobs:
       
       - name: ls current directory
         run: ls -la
+      
+      - name: move to webapp directory
+        run: cd webapp
+      
+      - name: check files in webapp
+        run: ls -la
         
       - name: checkout webapp code
         uses: actions/checkout@v4
@@ -59,7 +65,7 @@ jobs:
         run: ls -la
       
       - name: come back to home directory
-        run: cd | pwd
+        run: cd .. | pwd
 
       - name: check for available files
         run: ls -ltrh
