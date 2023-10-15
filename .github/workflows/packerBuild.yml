@@ -22,6 +22,15 @@ jobs:
       - name: print console log
         run: echo 'started packer build yml'
 
+      - name: git checkout current repo code
+        uses: actions/checkout@v4
+      
+      - name: Initial check for available files
+        run: ls -la
+      
+      - name: remove webapp already exists
+        run: sudo rm webapp*
+
       - name: checkout webapp code
         uses: actions/checkout@v4
         with: 
