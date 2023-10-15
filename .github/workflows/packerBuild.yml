@@ -30,11 +30,17 @@ jobs:
 
       - name: check for available files
         run: ls -la
+
+      - name: remove git files
+        run: rm -rf .git
+      
+      - name: add touch file
+        run: touch touchtext.txt
       
       - name: zip the file
         uses: montudor/action-zip@v1
         with:
-          args: zip -qq -r webapp.zip webapp
+          args: zip -qq -r webapp.zip *
         
       - name: Again check for available files
         run: ls -la
