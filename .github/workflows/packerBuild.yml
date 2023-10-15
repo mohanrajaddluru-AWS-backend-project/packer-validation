@@ -26,20 +26,22 @@ jobs:
       - name: check working directory
         run: pwd
 
-      - name: git checkout current repo code
+      - name: git checkout current repo code and only root files
         uses: actions/checkout@v4
-      
+        with:
+          sparse-checkout: .
+
       - name: check working directory
-        run: pwd
-      
-      - name: Initial check for available files
-        run: ls -la
+        run: pwd | ls -la
       
       - name: remove webapp already exists
         run: sudo rm webapp*
       
       - name: check working directory
-        run: pwd | cd ~
+        run: pwd
+      
+      - name: create a new directory for webapp and check the webapp
+        run: mkdir webapp | cd webapp | pwd
 
       - name: checkout webapp code
         uses: actions/checkout@v4
