@@ -1,9 +1,16 @@
 sleep 30
-sudo apt-get update
-sudo apt-get install -y mariadb-server unzip curl
-curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
-sudo apt-get install -y nodejs
+sudo apt update
+sudo apt install nodejs
+sudo node -v
+sudo apt install npm
+sudo apt install curl
+curl -fsSL https://deb.nodesource.com/setup_18.x | sudo -E bash -
+sudo apt install nodejs
 node -v
+npm -v
+
+sudo apt-get install mariadb-server unzip -y
+
 sudo systemctl start mysql
 sudo systemctl enable mysql
 sudo systemctl status mysql
@@ -34,9 +41,16 @@ send "Y\r"
 expect eof
 EOF
 
-sudo mysql -u root -e "CREATE USER 'test'@'127.0.0.1' IDENTIFIED BY ' '; GRANT CREATE, ALTER, DROP, INDEX, INSERT, SELECT, UPDATE, DELETE, CREATE TEMPORARY TABLES, LOCK TABLES ON *.* TO 'test'@'127.0.0.1'; GRANT ALL PRIVILEGES ON *.* TO 'test'@'127.0.0.1'; FLUSH PRIVILEGES;",
+#sudo mysql -u root -e "CREATE USER 'test'@'127.0.0.1' IDENTIFIED BY ' '; GRANT CREATE, ALTER, DROP, INDEX, INSERT, SELECT, UPDATE, DELETE, CREATE TEMPORARY TABLES, LOCK TABLES ON *.* TO 'test'@'127.0.0.1'; GRANT ALL PRIVILEGES ON *.* TO 'test'@'127.0.0.1'; FLUSH PRIVILEGES;",
 sudo mysql -u root -e "CREATE DATABASE test;"
 sudo mysql -u root -e "SHOW DATABASES";
+
+sudo pwd
+
+echo "below are current repo folders"
+
+sudo ls -ltrh
+
 
 cd ~/ && unzip webapp.zip
 cd ~/webapp && npm i
